@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'twitter_post.dart';
 
 void main() {
   runApp(TwitterApp());
@@ -52,7 +53,13 @@ class HomePage extends StatelessWidget {
       //body, scroll view
       body: SingleChildScrollView(
         child: Column(
-          children: [],
+          children: [
+            Card(
+              child: Padding(
+                padding: EdgeInsets.all(20.0),
+              ),
+            )
+          ],
         ),
       ),
 
@@ -71,8 +78,7 @@ class HomePage extends StatelessWidget {
               icon: Icon(Icons.search, size: 30), label: ''),
           BottomNavigationBarItem(
               icon: Icon(Icons.notifications, size: 30), label: ''),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.message, size: 30), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.mail, size: 30), label: ''),
         ],
       ),
 
