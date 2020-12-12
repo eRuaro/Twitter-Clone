@@ -29,23 +29,38 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: () {},
-              color: Colors.blue,
+            Expanded(
+              child: IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  size: 30,
+                ),
+                onPressed: () {},
+                color: Colors.blue,
+              ),
             ),
-            IconButton(
-              icon: Icon(Icons.flight),
-              onPressed: () {},
-              color: Colors.blue,
+            Expanded(
+              child: IconButton(
+                icon: Icon(
+                  Icons.android,
+                  size: 30,
+                ),
+                onPressed: () {},
+                color: Colors.blue,
+              ),
             ),
-            IconButton(
-              icon: Icon(Icons.star),
-              onPressed: () {},
-              color: Colors.blue,
-            )
+            Expanded(
+              child: IconButton(
+                icon: Icon(
+                  Icons.star,
+                  size: 30,
+                ),
+                onPressed: () {},
+                color: Colors.blue,
+              ),
+            ),
           ],
         ),
       ),
