@@ -1,23 +1,16 @@
-import 'package:flutter/material.dart';
+import 'tweets.dart';
 
-class TwitterPost extends StatelessWidget {
-  final image, content, name, likes, retweets, shares;
+class TwitterPost {
+  static var tweets = [
+    Tweets("Flutter is amazing! However it's kinda confusing lol",
+        '@flutterDev', '10h', 'techy'),
+    Tweets('I have a strong urge to not study for my exam tomorrow', '@idea',
+        '15h', 'brt brt'),
+    Tweets('Applications for incoming grade 11 students are now open! ',
+        '@DLSU', '1w', 'DLSU Manila'),
+  ];
 
-  TwitterPost(
-      {this.image,
-      this.content,
-      this.name,
-      this.likes,
-      this.retweets,
-      this.shares});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [ListTile()],
-      ),
-    );
+  static Tweets getTweet(int position) {
+    return tweets[position];
   }
 }

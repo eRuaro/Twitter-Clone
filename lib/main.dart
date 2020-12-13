@@ -1,161 +1,77 @@
 import 'package:flutter/material.dart';
-import 'twitter_post.dart';
+import 'user_feed.dart';
 
 void main() {
   runApp(TwitterApp());
 }
 
 class TwitterApp extends StatelessWidget {
-  TwitterApp({Key key}) : super(key: key);
+  const TwitterApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Twitter Clone with Flutter',
+      title: 'Twitter Clone',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int pageIndex = 0;
+
+  var twitterPages = [
+    UserFeed(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  size: 30,
-                ),
-                onPressed: () {},
-                color: Colors.blue,
-              ),
-            ),
-            Expanded(
-              child: IconButton(
-                icon: Icon(
-                  Icons.android,
-                  size: 30,
-                ),
-                onPressed: () {},
-                color: Colors.blue,
-              ),
-            ),
-            Expanded(
-              child: IconButton(
-                icon: Icon(
-                  Icons.star,
-                  size: 30,
-                ),
-                onPressed: () {},
-                color: Colors.blue,
-              ),
-            ),
-          ],
-        ),
-      ),
-
-      //body, scroll view
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Card(
-              child: Padding(
-                padding: EdgeInsets.all(20.0),
-              ),
-            )
-          ],
-        ),
-      ),
-
-      //Bottom navigation bar, home, search, notification, messages
+      body: twitterPages[pageIndex],
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              size: 30,
-            ),
-            label: '',
-          ),
+              label: '',
+              icon: Icon(
+                Icons.home,
+                color: pageIndex == 0 ? Colors.blue : Colors.grey,
+              )),
           BottomNavigationBarItem(
-              icon: Icon(Icons.search, size: 30), label: ''),
+              label: '',
+              icon: Icon(
+                Icons.search,
+                color: pageIndex == 1 ? Colors.blue : Colors.grey,
+              )),
           BottomNavigationBarItem(
-              icon: Icon(Icons.notifications, size: 30), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.mail, size: 30), label: ''),
+              label: '',
+              icon: Icon(
+                Icons.notifications,
+                color: pageIndex == 2 ? Colors.blue : Colors.grey,
+              )),
+          BottomNavigationBarItem(
+              label: '',
+              icon: Icon(
+                Icons.mail,
+                color: pageIndex == 3 ? Colors.blue : Colors.grey,
+              )),
         ],
-      ),
-
-      //SideBar
-      drawer: Drawer(
-        child: Container(
-          color: Colors.blue,
-          child: ListView(
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                      icon: Icon(Icons.add),
-                      onPressed: () {
-                        print('Drawer item 1 pressed');
-                      }),
-                  Text('Drawer Item 1'),
-                ],
-              ),
-              Row(
-                children: [
-                  IconButton(
-                      icon: Icon(Icons.add),
-                      onPressed: () {
-                        print('Drawer item 2 pressed');
-                      }),
-                  Text('Drawer Item 2'),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-
-      endDrawer: Drawer(
-        child: Container(
-          color: Colors.blue,
-          child: ListView(
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                      icon: Icon(Icons.add),
-                      onPressed: () {
-                        print('Drawer item 1 pressed');
-                      }),
-                  Text('Drawer Item 1'),
-                ],
-              ),
-              Row(
-                children: [
-                  IconButton(
-                      icon: Icon(Icons.add),
-                      onPressed: () {
-                        print('Drawer item 2 pressed');
-                      }),
-                  Text('Drawer Item 2'),
-                ],
-              ),
-            ],
-          ),
-        ),
+        onTap: (index) {
+          setState(() {
+            pageIndex = index;
+          });
+        },
+        currentIndex: pageIndex,
       ),
     );
   }
