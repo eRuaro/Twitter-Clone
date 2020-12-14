@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'search_feed.dart';
 import 'user_feed.dart';
 
 void main() {
@@ -33,6 +34,7 @@ class _HomePageState extends State<HomePage> {
 
   var twitterPages = [
     UserFeed(),
+    SearchFeed(),
   ];
 
   @override
