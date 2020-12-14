@@ -1,8 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'trends_for_you.dart';
-import 'trends.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SearchFeed extends StatefulWidget {
@@ -13,51 +11,80 @@ class SearchFeed extends StatefulWidget {
 }
 
 class _SearchFeedState extends State<SearchFeed> {
+  static final showCard = true; // Set to false to show Stack
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          'Search Page',
-          style: TextStyle(color: Colors.black),
+    return MaterialApp(
+      title: 'Flutter layout demo',
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text(
+            'Search',
+            style: TextStyle(color: Colors.black),
+          ),
         ),
-        leading: Icon(
-          Icons.account_circle_rounded,
-          color: Colors.grey,
-          size: 40,
+        body: Center(child: showCard ? _buildCard() : null),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(FontAwesomeIcons.featherAlt),
         ),
       ),
-      body: ListView.builder(
-        itemCount: 7,
-        itemBuilder: (BuildContext context, int position) {
-          Trends trends = TrendsForYou.getTrend(position);
-
-          return Column(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                        child: Container(
-                      child: RichText(
-                        text: TextSpan(
-                            text: trends.subject,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 17.0,
-                              color: Colors.black,
-                            )),
-                      ),
-                    )),
-                  ],
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+      debugShowCheckedModeBanner: false,
     );
   }
+
+  // #docregion Card
+  Widget _buildCard() => SizedBox(
+        height: 700,
+        child: Card(
+          child: Column(
+            children: [
+              ListTile(
+                title: Text('Trends for You',
+                    style:
+                        TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
+              ),
+              ListTile(
+                title: Text('Google',
+                    style: TextStyle(fontWeight: FontWeight.w500)),
+                subtitle: Text('1.67M Tweets'),
+              ),
+              Divider(),
+              ListTile(
+                title: Text('Facebook',
+                    style: TextStyle(fontWeight: FontWeight.w500)),
+                subtitle: Text('1.1M Tweets'),
+              ),
+              ListTile(
+                title: Text('WAIT WHAT',
+                    style: TextStyle(fontWeight: FontWeight.w500)),
+                subtitle: Text('72.2K Tweets'),
+              ),
+              ListTile(
+                title: Text('Cyberpunk 2077',
+                    style: TextStyle(fontWeight: FontWeight.w500)),
+                subtitle: Text('600K Tweets'),
+              ),
+              ListTile(
+                title: Text('Microsoft',
+                    style: TextStyle(fontWeight: FontWeight.w500)),
+                subtitle: Text('999K Tweets'),
+              ),
+              ListTile(
+                title: Text('Android',
+                    style: TextStyle(fontWeight: FontWeight.w500)),
+                subtitle: Text('160K Tweets'),
+              ),
+              ListTile(
+                title: Text('Machine Learning',
+                    style: TextStyle(fontWeight: FontWeight.w500)),
+                subtitle: Text('79K Tweets'),
+              ),
+            ],
+          ),
+        ),
+      );
+  // #enddocregion Card
 }
