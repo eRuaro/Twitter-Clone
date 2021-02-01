@@ -1,6 +1,6 @@
 # Twitter Clone
 
-A UI Clone of the Twitter mobile apps' Homepage and Search Page
+An UI Clone of the Twitter mobile apps' Homepage and Search Page
 
 ## ScreenShots
 
